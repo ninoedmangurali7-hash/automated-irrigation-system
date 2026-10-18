@@ -1,0 +1,9 @@
+{
+  "name": "irrigation-monitor-local-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "No-dependency browser demo for the irrigation monitor",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
