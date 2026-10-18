@@ -98,7 +98,7 @@ readings and pump commands across phones and computers.
    iOS Runner target.
 3. Register a Web app in the Firebase project and copy its API key, App ID,
    sender ID, and project ID from the Firebase configuration.
-4. Replace the placeholder values in `firebase_options.dart` or run
+4. Replace the placeholder values in `lib/firebase_options.dart` or run
    `flutterfire configure` to generate a project-specific Firebase config.
 5. In `lib/main.dart`, set `demoMode` to `false`.
 6. Run the web app with the Firebase Web config values (if you are not using

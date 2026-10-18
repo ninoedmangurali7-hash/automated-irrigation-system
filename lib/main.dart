@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../firebase_options.dart';
+import 'firebase_options.dart';
 
 const bool demoMode = true;
 const String systemId = 'greenhouse-1';
@@ -28,8 +28,8 @@ Future<void> main() async {
                 .contains('YOUR_') ||
             DefaultFirebaseOptions.currentPlatform.projectId.contains('YOUR_'))) {
       throw StateError(
-        'Firebase configuration is not set. Replace firebase_options.dart with '
-        'your project settings or run flutterfire configure.',
+        'Firebase configuration is not set. Replace lib/firebase_options.dart '
+        'with your project settings or run flutterfire configure.',
       );
     }
     await Firebase.initializeApp(
@@ -256,8 +256,8 @@ class DemoIrrigationRepository implements IrrigationRepository {
     for (var daysAgo = 1; daysAgo <= 6; daysAgo++) {
       _moistureHistory.add(
         MoistureSample(
-          moisture: [38, 46, 31, 52, 43, 35][daysAgo - 1],
-          fieldBMoisture: [61, 57, 72, 66, 70, 64][daysAgo - 1],
+          moisture: [38, 46, 31, 52, 43, 35][daysAgo - 1].toDouble(),
+          fieldBMoisture: [61, 57, 72, 66, 70, 64][daysAgo - 1].toDouble(),
           recordedAt: DateTime.now().subtract(Duration(days: daysAgo)),
         ),
       );
@@ -1258,7 +1258,7 @@ class _FieldSelector extends StatelessWidget {
   Widget build(BuildContext context) => ChoiceChip(
         label: Text(label),
         selected: selected,
-        onSelected: (_) => onTap(),
+        onSelected: onTap == null ? null : (_) => onTap?.call(),
         selectedColor: const Color(0xFF438BD2),
         labelStyle: TextStyle(
           color: selected ? Colors.white : const Color(0xFF68716B),
@@ -1727,7 +1727,7 @@ class _ValveRow extends StatelessWidget {
 
   final String label;
   final bool isOpen;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => Padding(
